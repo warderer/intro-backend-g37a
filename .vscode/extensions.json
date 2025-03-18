@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "usernamehw.errorlens",
+        "seatonjiang.gitmoji-vscode",
+        "nixon.env-cmd-file-syntax"
+    ]
+}
