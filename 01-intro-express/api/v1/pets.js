@@ -27,9 +27,9 @@ const petList = {
     ]
 }
 
-router.get('/api/v1/pets', (req, res) => {
-    res.json(petList)
-})
+// router.get('/api/v1/pets', (req, res) => {
+//     res.json(petList)
+// })
 
 /* PARAMS */
 // Un Param sirve para hacer una ruta dinámica. Por ejemplo, si quiero traer la información de una mascota en especifico, puedo hacer una ruta que reciba el ID de la mascota y que me regrese la información de esa mascota.
@@ -42,6 +42,31 @@ router.get('/api/v1/pets/:petId', (req, res) => {
 
     res.json(onePet)
 })
+
+/* QUERY */
+// Una query es similar a un PARAM, pero en lugar de ser parte de la ruta, se envía como un parametro en la URL (?). Sobre todo cuando ocupamos mandar más de un dato, es común usarlas para filtrar información.
+// Las Querys son abiertas, es decir, no se necesita definirlas en la ruta. Por ejemplo, si quiero filtrar las mascotas por tipo, puedo hacer una ruta que reciba el tipo de mascota y que me regrese la información de todas las mascotas de ese tipo.
+// Query: /api/v1/pets?type=dog&age=3
+
+router.get('/api/v1/pets', (req, res) => {
+    console.log(req.query)
+    const { type, age } = req.query
+    let pets = petList.pets
+    if (type && age) {
+        pets = pets.filter(pet => pet.type === type && pet.age === parseInt(age))
+    }
+
+    if (type) {
+        pets = pets.filter(pet => pet.type === type)
+    }
+
+    if (age) {
+        pets = pets.filter(pet => pet.age === parseInt(age))
+    }
+
+    res.json(pets)
+})
+
 
 // export en common JS
 module.exports = router
