@@ -17,5 +17,7 @@ router.post('/homes', homeController.createHome) // Crear una casa
 router.get('/homes', homeController.findAllHomes) // Obtener todas las casas
 router.get('/homes/:idHome', homeController.findOneHome) // Obtener una casa por su id
 router.patch('/homes/:idHome', homeController.updateOneHome) // Actualizar una casa por su id
+router.delete('/homes/:idHome', homeController.softDeleteOneHome) // Eliminar una casa por su id (soft delete)
+router.delete('/homes/destroy/:idHome', homeController.destroyOneHome) // Eliminar una casa por su id (hard delete)
 
 module.exports = router
