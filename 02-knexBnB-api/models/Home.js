@@ -33,11 +33,19 @@ const findOne = (houseId) => {
 }
 
 // Update
+const update = (houseId, bodyToUpdate) => {
+  return knex
+    .update(bodyToUpdate)
+    .from('homes')
+    .where('house_id', houseId)
+    .returning('*')
+}
 
 // Delete
 
 module.exports = {
   create,
   findAll,
-  findOne
+  findOne,
+  update
 }
